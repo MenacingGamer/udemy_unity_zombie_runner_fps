@@ -3,9 +3,10 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-	public Transform playerSpawnPoints;
-	public bool reSpawn = false;
+	public Heliacopter heliacopter;
+	private Transform playerSpawnPoints;
 
+	private bool reSpawn = false;
 	private bool lastToggle = false;
 	private Transform[] spawnPoints;
 	// Use this for initialization
@@ -29,5 +30,10 @@ public class Player : MonoBehaviour {
 	{
 	int i = Random.Range (1, spawnPoints.Length);
 	transform.position = spawnPoints [i].transform.position;
+	}
+	void OnFindClearArea ()
+	{
+		Debug.Log ("clear on player");
+		heliacopter.Call();
 	}
 }
