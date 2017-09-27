@@ -5,24 +5,23 @@ public class ClearArea : MonoBehaviour {
 
 	public float timeSinceLastTrigger = 0f;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
+	private bool foundClearArea = false;
 	
 	// Update is called once per frame
 	void Update ()
 	{
 		timeSinceLastTrigger += Time.deltaTime;
 
-		if (timeSinceLastTrigger > 2f) {
+		if (timeSinceLastTrigger > 5f && Time.realtimeSinceStartup > 35f && !foundClearArea) {
 			SendMessageUpwards ("OnFindClearArea");
+			foundClearArea = true;
 		}
 	}
-	void OnTriggerStay ()
+	void OnTriggerStay (Collider collider)
 	{
-	timeSinceLastTrigger = 0;
+		if (collider.tag != "Player") {
+			timeSinceLastTrigger = 0;
 
-
+		}
 	}
 }

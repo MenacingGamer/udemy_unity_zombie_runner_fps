@@ -43,17 +43,24 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
 
         // Use this for initialization
-        private void Start()
-        {
-            m_CharacterController = GetComponent<CharacterController>();
-            m_Camera = Camera.main;
-            m_OriginalCameraPosition = m_Camera.transform.localPosition;
-            m_FovKick.Setup(m_Camera);
-            m_HeadBob.Setup(m_Camera, m_StepInterval);
-            m_StepCycle = 0f;
-            m_NextStep = m_StepCycle/2f;
-            m_Jumping = false;
-            m_AudioSource = GetComponent<AudioSource>();
+        private void Start ()
+		{
+			m_CharacterController = GetComponent<CharacterController> ();
+			m_Camera = Camera.main;
+			m_OriginalCameraPosition = m_Camera.transform.localPosition;
+			m_FovKick.Setup (m_Camera);
+			m_HeadBob.Setup (m_Camera, m_StepInterval);
+			m_StepCycle = 0f;
+			m_NextStep = m_StepCycle / 2f;
+			m_Jumping = false;
+
+
+			AudioSource[] audioSources = GetComponents<AudioSource> ();
+			foreach (AudioSource audioSource in audioSources) {
+				if (audioSource.priority == 128) {
+					m_AudioSource = audioSource;
+				}
+			}
 			m_MouseLook.Init(transform , m_Camera.transform);
         }
 

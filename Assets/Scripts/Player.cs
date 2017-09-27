@@ -3,18 +3,18 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-	public Heliacopter heliacopter;
-	private Transform playerSpawnPoints;
+	
+	public Transform playerSpawnPoints;
 
 	private bool reSpawn = false;
 	private bool lastToggle = false;
 	private Transform[] spawnPoints;
+
 	// Use this for initialization
-	void Start () {
-	spawnPoints = playerSpawnPoints.GetComponentsInChildren<Transform> ();
-	print (spawnPoints.Length);
-	
-	}
+	void Start ()
+	{
+		spawnPoints = playerSpawnPoints.GetComponentsInChildren<Transform> ();
+		}
 	
 	// Update is called once per frame
 	void Update ()
@@ -33,7 +33,10 @@ public class Player : MonoBehaviour {
 	}
 	void OnFindClearArea ()
 	{
-		Debug.Log ("clear on player");
-		heliacopter.Call();
+	Invoke ("DropFlare", 3f);
+	}
+	void DropFlare ()
+	{
+	//Drop flare
 	}
 }
