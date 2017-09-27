@@ -12,7 +12,7 @@ public class ClearArea : MonoBehaviour {
 	{
 		timeSinceLastTrigger += Time.deltaTime;
 
-		if (timeSinceLastTrigger > 5f && Time.realtimeSinceStartup > 35f && !foundClearArea) {
+		if (timeSinceLastTrigger > 5f && Time.realtimeSinceStartup > 15f && !foundClearArea) {
 			SendMessageUpwards ("OnFindClearArea");
 			foundClearArea = true;
 		}
